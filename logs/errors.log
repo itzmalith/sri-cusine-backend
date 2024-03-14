@@ -1,0 +1,22 @@
+[2024-03-14T16:06:13.832] [ERROR] default - [userController] :: createUser() : Username already exists
+[2024-03-14T17:15:37.304] [ERROR] default - [userController] :: createUser() : Username already exists
+[2024-03-14T17:16:18.285] [ERROR] default - [userController] :: createUser() : Invalid email format
+[2024-03-14T17:16:51.366] [ERROR] default - [userController] :: createUser() : Username already exists
+[2024-03-14T17:17:41.189] [ERROR] default - [userController] :: editUser() : Invalid email format
+[2024-03-14T17:42:22.188] [ERROR] default - [authController] :: authenticate() : Unauthorized user
+[2024-03-14T19:08:06.661] [ERROR] default - [authController] :: authenticate() : Unauthorized user
+[2024-03-14T19:40:38.705] [ERROR] default - [mailUtil] :: sendMail() : error : Error: connect ECONNREFUSED 127.0.0.1:587
+[2024-03-14T19:43:41.834] [ERROR] default - [mailUtil] :: sendMail() : error : Error: connect ECONNREFUSED 127.0.0.1:587
+[2024-03-14T20:13:25.819] [ERROR] default - [mailUtil] :: sendMail() : error : Error: Unexpected socket close
+[2024-03-14T20:14:42.942] [ERROR] default - [mailUtil] :: sendMail() : error : Error: Unexpected socket close
+[2024-03-14T20:15:43.759] [ERROR] default - [mailUtil] :: sendMail() : error : Error: Unexpected socket close
+[2024-03-14T20:16:42.283] [ERROR] default - [mailUtil] :: sendMail() : error : Error: Unexpected socket close
+[2024-03-14T20:22:15.441] [ERROR] default - [mailUtil] :: sendMail() : error : Error: Unexpected socket close
+[2024-03-14T20:23:21.650] [ERROR] default - [mailUtil] :: sendMail() : error : Error: Unexpected socket close
+[2024-03-14T20:25:26.655] [ERROR] default - [mailUtil] :: sendMail() : error : Error: Missing credentials for "PLAIN"
+[2024-03-14T20:25:35.375] [ERROR] default - [mailUtil] :: sendMail() : error : Error: Missing credentials for "PLAIN"
+[2024-03-14T20:31:25.320] [ERROR] default - [mailUtil] :: sendMail() : error : Error: Missing credentials for "PLAIN"
+[2024-03-14T20:43:12.832] [ERROR] default - [mailUtil] :: sendMail() : error : Error: Missing credentials for "PLAIN"
+[2024-03-14T23:17:55.158] [ERROR] default - [authController] :: requestPasswordReset() : No users with the given userName
+[2024-03-14T23:34:59.110] [ERROR] default - [authController] :: requestPasswordReset() : No users with the given userName
+[2024-03-14T23:35:05.776] [ERROR] default - [authController] :: requestPasswordReset() : No users with the given userName
