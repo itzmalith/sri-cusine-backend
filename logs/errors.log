@@ -20,3 +20,19 @@
 [2024-03-14T23:17:55.158] [ERROR] default - [authController] :: requestPasswordReset() : No users with the given userName
 [2024-03-14T23:34:59.110] [ERROR] default - [authController] :: requestPasswordReset() : No users with the given userName
 [2024-03-14T23:35:05.776] [ERROR] default - [authController] :: requestPasswordReset() : No users with the given userName
+[2024-03-15T00:52:58.278] [ERROR] default - [ingredientController] :: createIngredient() : Error creating ingredient: Ingredient validation failed: user: Path `user` is required.
+[2024-03-15T00:58:14.577] [ERROR] default - [ingredientController] :: createIngredient() : Error creating ingredient: Ingredient validation failed: user: Path `user` is required.
+[2024-03-15T01:06:48.332] [ERROR] default - [authController] :: requestPasswordReset() : No users with the given userName
+[2024-03-15T01:22:11.467] [ERROR] default - [authController] :: authenticate() : Unauthorized user
+[2024-03-15T01:38:55.124] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-15T01:39:21.517] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-15T01:39:22.882] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-15T01:39:54.179] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-15T01:40:20.446] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-15T01:40:55.671] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-15T01:43:52.849] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-15T01:44:08.919] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-15T01:44:25.144] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-15T01:45:21.403] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-15T01:46:34.229] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-15T01:46:39.023] [ERROR] default - [authController] :: resetPassword() : Invalid otp

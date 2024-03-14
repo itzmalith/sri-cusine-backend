@@ -8,9 +8,10 @@ const AppError = require('../utils/app.error');
 // @route   GET /api/v1/ingredients
 // @access  Public
 const getIngredients = asyncHandler(async (req, res) => {
+    const { userId } = req.body;
     logger.trace("[ingredientController] :: getIngredient() : Start");
 
-        // Calculate dates for the different expiration thresholds
+        
         const oneDayFromNow = new Date();
         oneDayFromNow.setDate(oneDayFromNow.getDate() + 1);
     
@@ -21,22 +22,31 @@ const getIngredients = asyncHandler(async (req, res) => {
         sevenDaysFromNow.setDate(sevenDaysFromNow.getDate() + 7);
 
     // Find ingredients and categorize
+    
     const ingredients = await Ingredient.find({
+        user: userId,
         $or: [
             { expiryDate: { $lte: oneDayFromNow } },
             { expiryDate: { $lte: threeDaysFromNow, $gt: oneDayFromNow } },
             { expiryDate: { $lte: sevenDaysFromNow, $gt: threeDaysFromNow } } 
         ]
     });
+    console.log(ingredients);
+    if (!ingredients || ingredients.length === 0) {
+        return res.status(404).json({ message: "No ingredients found." });
+    }
 
     const categorizedIngredients = {
         expiringToday: [],
         expiringIn3Days: [],
-        expiringIn7Days: []
+        expiringIn7Days: [],
+        expired: []
     };
-
+    
     ingredients.forEach(ingredient => {
-        if (ingredient.expiryDate <= oneDayFromNow) {
+        if (ingredient.expiryDate < oneDayFromNow) {
+            categorizedIngredients.expired.push(ingredient);
+        } else if (ingredient.expiryDate <= oneDayFromNow) {
             categorizedIngredients.expiringToday.push(ingredient);
         } else if (ingredient.expiryDate <= threeDaysFromNow) {
             categorizedIngredients.expiringIn3Days.push(ingredient);
@@ -44,6 +54,7 @@ const getIngredients = asyncHandler(async (req, res) => {
             categorizedIngredients.expiringIn7Days.push(ingredient);
         }
     });
+    
 
     if (!categorizedIngredients){
         res.status(200).json("No ingredients expiring within the next 7 days");
@@ -62,13 +73,12 @@ const getIngredients = asyncHandler(async (req, res) => {
 const createIngredient = asyncHandler(async (req, res) => {
     const { name, quantityInGrams, expiryDate , userId } = req.body;
     
-
     logger.trace("[ingredientController] :: createIngredient() : Start");
 
     try {
         // Create the ingredient
         const ingredient = await Ingredient.create({
-            userId,
+            user:userId,
             name,
             quantityInGrams,
             expiryDate

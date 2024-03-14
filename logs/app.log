@@ -165,3 +165,75 @@
 [2024-03-14T23:34:59.110] [ERROR] default - [authController] :: requestPasswordReset() : No users with the given userName
 [2024-03-14T23:35:05.644] [TRACE] default - [authController] :: requestPasswordReset() : Start
 [2024-03-14T23:35:05.776] [ERROR] default - [authController] :: requestPasswordReset() : No users with the given userName
+[2024-03-15T00:52:58.272] [TRACE] default - [ingredientController] :: createIngredient() : Start
+[2024-03-15T00:52:58.278] [ERROR] default - [ingredientController] :: createIngredient() : Error creating ingredient: Ingredient validation failed: user: Path `user` is required.
+[2024-03-15T00:52:58.283] [TRACE] default - [ingredientController] :: createIngredient() : End
+[2024-03-15T00:58:14.570] [TRACE] default - [ingredientController] :: createIngredient() : Start
+[2024-03-15T00:58:14.577] [ERROR] default - [ingredientController] :: createIngredient() : Error creating ingredient: Ingredient validation failed: user: Path `user` is required.
+[2024-03-15T00:58:14.581] [TRACE] default - [ingredientController] :: createIngredient() : End
+[2024-03-15T00:58:42.614] [TRACE] default - [ingredientController] :: createIngredient() : Start
+[2024-03-15T00:58:42.701] [INFO] default - [ingredientController] :: createIngredient() : Ingredientcreated successfully
+[2024-03-15T00:58:42.701] [TRACE] default - [ingredientController] :: createIngredient() : End
+[2024-03-15T01:04:54.347] [TRACE] default - [ingredientController] :: getIngredient() : Start
+[2024-03-15T01:04:54.419] [TRACE] default - [ingredientController] :: getIngredient() : end
+[2024-03-15T01:06:14.240] [TRACE] default - [ingredientController] :: getIngredient() : Start
+[2024-03-15T01:06:14.304] [TRACE] default - [ingredientController] :: getIngredient() : end
+[2024-03-15T01:06:15.431] [TRACE] default - [ingredientController] :: getIngredient() : Start
+[2024-03-15T01:06:15.493] [TRACE] default - [ingredientController] :: getIngredient() : end
+[2024-03-15T01:06:27.380] [TRACE] default - [ingredientController] :: getIngredient() : Start
+[2024-03-15T01:06:27.449] [TRACE] default - [ingredientController] :: getIngredient() : end
+[2024-03-15T01:06:48.263] [TRACE] default - [authController] :: requestPasswordReset() : Start
+[2024-03-15T01:06:48.332] [ERROR] default - [authController] :: requestPasswordReset() : No users with the given userName
+[2024-03-15T01:08:24.838] [TRACE] default - [ingredientController] :: getIngredient() : Start
+[2024-03-15T01:08:24.910] [TRACE] default - [ingredientController] :: getIngredient() : end
+[2024-03-15T01:09:29.828] [TRACE] default - [ingredientController] :: getIngredient() : Start
+[2024-03-15T01:09:29.898] [TRACE] default - [ingredientController] :: getIngredient() : end
+[2024-03-15T01:12:23.068] [TRACE] default - [ingredientController] :: getIngredient() : Start
+[2024-03-15T01:16:41.912] [TRACE] default - [ingredientController] :: getIngredient() : Start
+[2024-03-15T01:17:34.243] [TRACE] default - [ingredientController] :: getIngredient() : Start
+[2024-03-15T01:17:36.819] [TRACE] default - [ingredientController] :: getIngredient() : Start
+[2024-03-15T01:18:35.998] [TRACE] default - [ingredientController] :: getIngredient() : Start
+[2024-03-15T01:18:36.077] [TRACE] default - [ingredientController] :: getIngredient() : end
+[2024-03-15T01:22:11.290] [TRACE] default - [authController] :: authenticate() : Start
+[2024-03-15T01:22:11.467] [ERROR] default - [authController] :: authenticate() : Unauthorized user
+[2024-03-15T01:22:15.618] [TRACE] default - [authController] :: authenticate() : Start
+[2024-03-15T01:22:15.858] [TRACE] default - [authController] :: authenticate() : End
+[2024-03-15T01:22:35.764] [TRACE] default - [projectController] :: editUser() : Start
+[2024-03-15T01:22:35.835] [TRACE] default - [userController] :: editUser() : End
+[2024-03-15T01:22:42.104] [TRACE] default - [projectController] :: editUser() : Start
+[2024-03-15T01:22:42.171] [TRACE] default - [userController] :: editUser() : End
+[2024-03-15T01:38:10.483] [TRACE] default - [authController] :: requestPasswordReset() : Start
+[2024-03-15T01:38:10.629] [TRACE] default - [mailUtil] :: sendMail(): Start
+[2024-03-15T01:38:14.325] [TRACE] default - [mailUtil] :: sendMail(): End
+[2024-03-15T01:38:14.325] [DEBUG] default - [authController] :: requestPasswordReset() : mailSent : {true }
+[2024-03-15T01:38:14.329] [TRACE] default - [authController] :: requestPasswordReset() : End
+[2024-03-15T01:38:55.059] [TRACE] default - [authController] :: resetPassword() : Start
+[2024-03-15T01:38:55.124] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-15T01:39:21.457] [TRACE] default - [authController] :: resetPassword() : Start
+[2024-03-15T01:39:21.517] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-15T01:39:22.821] [TRACE] default - [authController] :: resetPassword() : Start
+[2024-03-15T01:39:22.882] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-15T01:39:54.115] [TRACE] default - [authController] :: resetPassword() : Start
+[2024-03-15T01:39:54.179] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-15T01:40:20.029] [TRACE] default - [authController] :: resetPassword() : Start
+[2024-03-15T01:40:20.446] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-15T01:40:55.605] [TRACE] default - [authController] :: resetPassword() : Start
+[2024-03-15T01:40:55.671] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-15T01:41:35.001] [TRACE] default - [authController] :: resetPassword() : Start
+[2024-03-15T01:41:52.946] [TRACE] default - [authController] :: resetPassword() : Start
+[2024-03-15T01:41:57.195] [TRACE] default - [authController] :: resetPassword() : Start
+[2024-03-15T01:43:52.778] [TRACE] default - [authController] :: resetPassword() : Start
+[2024-03-15T01:43:52.849] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-15T01:44:08.858] [TRACE] default - [authController] :: resetPassword() : Start
+[2024-03-15T01:44:08.919] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-15T01:44:25.073] [TRACE] default - [authController] :: resetPassword() : Start
+[2024-03-15T01:44:25.144] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-15T01:45:21.336] [TRACE] default - [authController] :: resetPassword() : Start
+[2024-03-15T01:45:21.403] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-15T01:46:14.747] [TRACE] default - [authController] :: resetPassword() : Start
+[2024-03-15T01:46:34.167] [TRACE] default - [authController] :: resetPassword() : Start
+[2024-03-15T01:46:34.229] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-15T01:46:38.957] [TRACE] default - [authController] :: resetPassword() : Start
+[2024-03-15T01:46:39.023] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-15T01:46:47.460] [TRACE] default - [authController] :: resetPassword() : Start
+[2024-03-15T01:48:09.083] [TRACE] default - [authController] :: resetPassword() : Start

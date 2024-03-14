@@ -112,14 +112,13 @@ const requestPasswordReset = asyncHanlder(async (req, res) => {
     logger.trace("[authController] :: requestPasswordReset() : End");
 })
 
-const resetPassword = asyncHanlder(async (req, res) => {
+const OTPcheck = asyncHanlder(async (req, res) => {
     logger.trace("[authController] :: resetPassword() : Start");
     
     const OTP = req.body.otp;
-    const userName = req.body.userName;
-    
-    
-    const userPasswordResetModel = await UserPasswordResetModel.findOne({ otp: OTP , userName :userName });
+    const userId = req.body.userId;
+
+    const userPasswordResetModel = await UserPasswordResetModel.findOne({ otp: OTP , user :userId });
     if (!userPasswordResetModel) {
         logger.error("[authController] :: resetPassword() : Invalid otp");
         throw new AppError(401, i18n.__("PASSWORD_RESET_INVALID_OTP"));
@@ -131,78 +130,67 @@ const resetPassword = asyncHanlder(async (req, res) => {
         throw new AppError(401, i18n.__("PASSWORD_RESET_EXPIRED_LINK"));
     }
 
-    const user = userPasswordResetModel.user._id 
+    res.status(200).json({ payload: null, userId: userId, status: Status.getSuccessStatus(i18n.__("SUCCESS")) });
 
-    const allUserPasswords = await Alluserpasswords.findOne({ User: user});
 
-    if (allUserPasswords) {
-        const lastThreeHashedPasswords = allUserPasswords.hashedPasswords.slice(-3);
-
-        const matchFound = await Promise.all(lastThreeHashedPasswords.map(async (hashedPassword) => {
-            return await bcrypt.compare(newPassword, hashedPassword);
-        }));
-
-        if (matchFound.some(result => result)) {
-            logger.error("[authController] :: resetPassword() : Cannot reuse old passwords");
-            throw new AppError(402, i18n.__("NEW_PASSWORD_ALREADY_USED"));
-        }
-    }
-
-    // Hash password
-    const salt = await bcrypt.genSalt(10)
-    const hashsedPassword = await bcrypt.hash(newPassword, salt)
-
-    const updatedUser = await User.findByIdAndUpdate(userPasswordResetModel.user,
-        {
-            password: hashsedPassword,
-            status: constants.USER_STATUS.ACTIVE
-        }, { new: true });
-
-    if (!updatedUser) {
-        logger.error("[authController] :: resetPassword() : No users with the given id");
-        throw new AppError(404, i18n.__("USER_NOT_FOUND"))
-    }
-
-    if (allUserPasswords) {
-        allUserPasswords.hashedPasswords.push(hashsedPassword);
-        await allUserPasswords.save();
-
-    } else {
-        await Alluserpasswords.create({ User: user._id, hashedPasswords: [hashsedPassword] });
-    }
-
-    const result = await UserPasswordResetModel.deleteOne({ _id: userPasswordResetModel._id })
-
-    res.status(200).json({ payload: null, status: Status.getSuccessStatus(i18n.__("SUCCESS")) });
-    logger.trace("[authController] :: resetPassword() : End");
 })
 
-const resetLinkExpiry = asyncHanlder(async (req, res) => {
-    logger.trace("[authController] :: checkResetLinkExpiry() : Start");
-    const reqId = req.body.reqId;
-    const keyCode = req.body.keyCode;
-
-    let currentTime = moment().utc().format('YYYY-MM-DD HH:mm');
-    if (new Date(userPasswordResetModel.resetExpiryTime) < new Date(currentTime)) {
-        logger.error("[authController] :: checkResetLinkExpiry() : Password reset url is expired");
-        throw new AppError(402, i18n.__("PASSWORD_RESET_EXPIRED_LINK"));
-    }
-
-    const userPasswordResetModel = await UserPasswordResetModel.findOne({ _id: reqId, keyCode: keyCode });
-    if (!userPasswordResetModel) {
-        logger.error("[authController] :: checkResetLinkExpiry() : Invalid Link");
-        throw new AppError(401, i18n.__("PASSWORD_RESET_INVALID_LINK"));
-    }
-
+// const resetPassword = asyncHanlder(async (req, res) => {
+//     logger.trace("[authController] :: resetPassword() : Start");
     
-    res.status(200).json({ payload: null, status: Status.getSuccessStatus(i18n.__("SUCCESS")) });
-    logger.trace("[authController] :: checkResetLinkExpiry() : End");
-});
+   
+
+//     const user = userPasswordResetModel.user._id 
+
+//     const allUserPasswords = await Alluserpasswords.findOne({ User: user});
+
+//     if (allUserPasswords) {
+//         const lastThreeHashedPasswords = allUserPasswords.hashedPasswords.slice(-3);
+
+//         const matchFound = await Promise.all(lastThreeHashedPasswords.map(async (hashedPassword) => {
+//             return await bcrypt.compare(newPassword, hashedPassword);
+//         }));
+
+//         if (matchFound.some(result => result)) {
+//             logger.error("[authController] :: resetPassword() : Cannot reuse old passwords");
+//             throw new AppError(402, i18n.__("NEW_PASSWORD_ALREADY_USED"));
+//         }
+//     }
+
+//     // Hash password
+//     const salt = await bcrypt.genSalt(10)
+//     const hashsedPassword = await bcrypt.hash(newPassword, salt)
+
+//     const updatedUser = await User.findByIdAndUpdate(userPasswordResetModel.user,
+//         {
+//             password: hashsedPassword,
+//             status: constants.USER_STATUS.ACTIVE
+//         }, { new: true });
+
+//     if (!updatedUser) {
+//         logger.error("[authController] :: resetPassword() : No users with the given id");
+//         throw new AppError(404, i18n.__("USER_NOT_FOUND"))
+//     }
+
+//     if (allUserPasswords) {
+//         allUserPasswords.hashedPasswords.push(hashsedPassword);
+//         await allUserPasswords.save();
+
+//     } else {
+//         await Alluserpasswords.create({ User: user._id, hashedPasswords: [hashsedPassword] });
+//     }
+
+//     const result = await UserPasswordResetModel.deleteOne({ _id: userPasswordResetModel._id })
+
+//     res.status(200).json({ payload: null, status: Status.getSuccessStatus(i18n.__("SUCCESS")) });
+//     logger.trace("[authController] :: resetPassword() : End");
+// })
+
+
 
 
 module.exports = {
     authenticate,
     requestPasswordReset,
-    resetPassword,
-    resetLinkExpiry,
+    OTPcheck
 }
