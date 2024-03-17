@@ -135,62 +135,46 @@ const OTPcheck = asyncHanlder(async (req, res) => {
 
 })
 
-// const resetPassword = asyncHanlder(async (req, res) => {
-//     logger.trace("[authController] :: resetPassword() : Start");
-    
-   
+const resetPassword = asyncHanlder(async (req, res) => {
+    logger.trace("[authController] :: resetPassword() : Start");
 
-//     const user = userPasswordResetModel.user._id 
+    const { userId, newPassword } = req.body;
 
-//     const allUserPasswords = await Alluserpasswords.findOne({ User: user});
+    if (!userId || !newPassword) {
+        logger.error("[authController] :: resetPassword() : Missing required fields");
+        throw new AppError(400, i18n.__("ERROR_MISSING_REQUIRED_FIELDS"));
+    }
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+    if (!passwordRegex.test(newPassword)) {
+        logger.error("[authController] :: resetPassword() : Password does not meet requirements");
+        throw new AppError(400, i18n.__("ERROR_INVALID_PASSWORD_FORMAT"));
+    }
 
-//     if (allUserPasswords) {
-//         const lastThreeHashedPasswords = allUserPasswords.hashedPasswords.slice(-3);
+    const user = await User.findById(userId);
 
-//         const matchFound = await Promise.all(lastThreeHashedPasswords.map(async (hashedPassword) => {
-//             return await bcrypt.compare(newPassword, hashedPassword);
-//         }));
+    if (!user) {
+        logger.error("[authController] :: resetPassword() : User not found");
+        throw new AppError(404, i18n.__("ERROR_USER_NOT_FOUND"));
+    }
 
-//         if (matchFound.some(result => result)) {
-//             logger.error("[authController] :: resetPassword() : Cannot reuse old passwords");
-//             throw new AppError(402, i18n.__("NEW_PASSWORD_ALREADY_USED"));
-//         }
-//     }
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
 
-//     // Hash password
-//     const salt = await bcrypt.genSalt(10)
-//     const hashsedPassword = await bcrypt.hash(newPassword, salt)
+    user.password = hashedPassword;
+    user.status = "ACTIVE";
 
-//     const updatedUser = await User.findByIdAndUpdate(userPasswordResetModel.user,
-//         {
-//             password: hashsedPassword,
-//             status: constants.USER_STATUS.ACTIVE
-//         }, { new: true });
+    await user.save();
 
-//     if (!updatedUser) {
-//         logger.error("[authController] :: resetPassword() : No users with the given id");
-//         throw new AppError(404, i18n.__("USER_NOT_FOUND"))
-//     }
+    res.status(200).json({ message: i18n.__("PASSWORD_RESET_SUCCESS") });
 
-//     if (allUserPasswords) {
-//         allUserPasswords.hashedPasswords.push(hashsedPassword);
-//         await allUserPasswords.save();
-
-//     } else {
-//         await Alluserpasswords.create({ User: user._id, hashedPasswords: [hashsedPassword] });
-//     }
-
-//     const result = await UserPasswordResetModel.deleteOne({ _id: userPasswordResetModel._id })
-
-//     res.status(200).json({ payload: null, status: Status.getSuccessStatus(i18n.__("SUCCESS")) });
-//     logger.trace("[authController] :: resetPassword() : End");
-// })
-
+    logger.trace("[authController] :: resetPassword() : End");
+});
 
 
 
 module.exports = {
     authenticate,
     requestPasswordReset,
-    OTPcheck
+    OTPcheck,
+    resetPassword
 }
