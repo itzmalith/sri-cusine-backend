@@ -8,7 +8,6 @@ const routesV1 = require('./routes/v1')
 const cors = require('cors');
 const i18n = require("i18n");
 
-
 i18n.configure({
     locales: ['en'],
     directory: __dirname + '/locales'

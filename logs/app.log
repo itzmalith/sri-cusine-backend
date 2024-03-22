@@ -237,3 +237,15 @@
 [2024-03-15T01:46:39.023] [ERROR] default - [authController] :: resetPassword() : Invalid otp
 [2024-03-15T01:46:47.460] [TRACE] default - [authController] :: resetPassword() : Start
 [2024-03-15T01:48:09.083] [TRACE] default - [authController] :: resetPassword() : Start
+[2024-03-19T22:20:41.827] [TRACE] default - userController] :: getUsers() : Start
+[2024-03-19T22:20:41.937] [TRACE] default - [userController] :: getUsers() : End
+[2024-03-19T22:33:11.821] [TRACE] default - userController] :: getUsers() : Start
+[2024-03-19T22:33:11.904] [TRACE] default - [userController] :: getUsers() : End
+[2024-03-21T14:12:28.928] [TRACE] default - [userController] :: createUser() : Start
+[2024-03-21T14:12:29.233] [TRACE] default - [userController] :: createUser() : End
+[2024-03-21T14:14:09.831] [TRACE] default - [userController] :: createUser() : Start
+[2024-03-21T14:14:09.897] [ERROR] default - [userController] :: createUser() : Username already exists
+[2024-03-21T14:14:16.579] [TRACE] default - [userController] :: createUser() : Start
+[2024-03-21T14:14:16.868] [TRACE] default - [userController] :: createUser() : End
+[2024-03-21T14:18:30.010] [TRACE] default - [userController] :: createUser() : Start
+[2024-03-21T14:18:30.075] [ERROR] default - [userController] :: createUser() : Username already exists

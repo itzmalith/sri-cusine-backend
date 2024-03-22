@@ -10,10 +10,6 @@ const ingredientSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    quantityInGrams: {
-        type: Number,
-        required: true
-    },
     expiryDate: {
         type: Date,
         required: true

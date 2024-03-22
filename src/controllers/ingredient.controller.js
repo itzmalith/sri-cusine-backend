@@ -71,7 +71,7 @@ const getIngredients = asyncHandler(async (req, res) => {
 // @route   POST /api/v1/ingredients
 // @access  Public
 const createIngredient = asyncHandler(async (req, res) => {
-    const { name, quantityInGrams, expiryDate , userId } = req.body;
+    const { name, expiryDate , userId } = req.body;
     
     logger.trace("[ingredientController] :: createIngredient() : Start");
 
@@ -80,7 +80,6 @@ const createIngredient = asyncHandler(async (req, res) => {
         const ingredient = await Ingredient.create({
             user:userId,
             name,
-            quantityInGrams,
             expiryDate
         });
 

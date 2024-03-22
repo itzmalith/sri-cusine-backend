@@ -38,12 +38,6 @@ const getUserById = asyncHandler(async (req, res) => {
         throw new AppError(404, i18n.__("ERROR_USER_NOT_FOUND"));
     }
 
-
-    if (req.user.id !== user.id.toString() && req.user.role !== 'admin') {
-        logger.error("[userController] :: getUserById() : Unauthorized access");
-        throw new AppError(401, i18n.__("ERROR_UNAUTHORIZED")); 
-    }
-
     res.status(200).json(user);
     logger.trace("[userController] :: getUserById() : End"); 
 });
@@ -94,6 +88,7 @@ const createUser = asyncHandler(async (req, res) => {
     })
 
     //If a new user is created, return user
+
     if (user) {
         await Alluserpasswords.create({ User: user._id, hashedPasswords: [hashsedPassword] });
         res.status(201).json(user)
@@ -185,46 +180,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 })
 
 
-// const resetPassword = asyncHandler(async (req, res) => {
-//     const { resetPasswordToken, newPassword } = req.body;
-  
-//     const user = await User.findOne({
-//       resetPasswordToken,
-//       resetPasswordExpires: { $gt: Date.now() },
-//     });
-  
-//     if (!user) {
-//       throw new AppError('Invalid or expired password reset token', 400);
-//     }
-  
-//     user.password = await bcrypt.hash(newPassword, 10);
-//     user.resetPasswordToken = undefined;
-//     user.resetPasswordExpires = undefined;
-  
-//     await user.save();
-  
-//     res.status(200).json({ message: 'Password reset successful' });
-//   });
 
-  
-// const requestPasswordReset = asyncHandler(async (req, res) => {
-//     const { userName } = req.body; 
-//     const user = await User.findOne({ userName }); 
-//     if (!user) {
-//       throw new AppError('User not found', 404);
-//     }
-  
-//     const resetToken = basicUtil.generateResetPasswordToken();
-//     user.resetPasswordToken = resetToken;
-//     user.resetPasswordExpires = Date.now() + 3600000; 
-  
-//     await user.save();
-
-  
-//     await basicUtil.sendPasswordResetEmail(user.email, resetToken); 
-//     res.status(200).json({ message: 'Password reset email sent' });
-    
-// });
 
 module.exports = {
     createUser,
@@ -232,7 +188,5 @@ module.exports = {
     deleteUser,
     getUsers,
     getUserById
-    // loginUser,
-    // resetPassword,
-    // requestPasswordReset
+
 }

@@ -36,3 +36,5 @@
 [2024-03-15T01:45:21.403] [ERROR] default - [authController] :: resetPassword() : Invalid otp
 [2024-03-15T01:46:34.229] [ERROR] default - [authController] :: resetPassword() : Invalid otp
 [2024-03-15T01:46:39.023] [ERROR] default - [authController] :: resetPassword() : Invalid otp
+[2024-03-21T14:14:09.897] [ERROR] default - [userController] :: createUser() : Username already exists
+[2024-03-21T14:18:30.075] [ERROR] default - [userController] :: createUser() : Username already exists
