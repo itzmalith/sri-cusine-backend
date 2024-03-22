@@ -249,3 +249,5 @@
 [2024-03-21T14:14:16.868] [TRACE] default - [userController] :: createUser() : End
 [2024-03-21T14:18:30.010] [TRACE] default - [userController] :: createUser() : Start
 [2024-03-21T14:18:30.075] [ERROR] default - [userController] :: createUser() : Username already exists
+[2024-03-22T11:44:06.576] [TRACE] default - [userController] :: getUserById() : Start
+[2024-03-22T11:44:06.662] [TRACE] default - [userController] :: getUserById() : End

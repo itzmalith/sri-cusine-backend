@@ -26,21 +26,24 @@ const getUsers = asyncHandler(async (req, res) => {
 
 // @desc    Get user by ID
 // @route   GET /api/v1/users/:id
-const getUserById = asyncHandler(async (req, res) => {
+const getUserById = asyncHandler(async (req, res, next) => {
     logger.trace("[userController] :: getUserById() : Start");
+  
+    try {
+      const userId = req.params.id;
+  
+      const user = await User.findById(userId).select("-password");
+  
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+  
 
-    const userId = req.body.userId 
-
-    const user = await User.findById(userId).select('-password');
-
-    if (!user) {
-        logger.error("[userController] :: getUserById() : User not found");
-        throw new AppError(404, i18n.__("ERROR_USER_NOT_FOUND"));
+      res.status(200).json(user);
+    } catch (error) {
+      next(error); 
     }
-
-    res.status(200).json(user);
-    logger.trace("[userController] :: getUserById() : End"); 
-});
+  });
 
 // @desc    create a user
 // @route   POST /api/v1/users
