@@ -94,6 +94,28 @@ const createIngredient = asyncHandler(async (req, res) => {
     logger.trace("[ingredientController] :: createIngredient() : End");
 });
 
+const createIngredientBatch = asyncHandler(async (req, res) => {
+    logger.trace("[ingredientController] :: ingredientIngredientBatch() : Start");
+
+    const ingredientData = req.body;
+
+    if (!Array.isArray(ingredientData)) {
+        logger.error("[ingredientMeetingBatch] :: ingredientMeetingBatch() : Invalid data format")
+        throw new AppError(400, i18n("ERROR_INVALID_DATA_FORMAT"))
+    }
+
+    const createdIngredients = await Ingredient.insertMany(ingredientData.map(ingredientData => ({
+        user: ingredientData.user,
+        expiryDate: ingredientData.expiryDate,
+        name: ingredientData.name,
+
+    })));
+    
+    res.status(200).json(createdIngredients);
+
+    logger.trace("[ingredientController] :: createIngredientBatch() : End");
+});
+
 
 
 // @desc    Update an ingredient
@@ -140,5 +162,6 @@ const updateIngredient = asyncHandler(async (req, res) => {
 module.exports = {
     getIngredients,
     createIngredient,
-    updateIngredient
+    updateIngredient,
+    createIngredientBatch
 };
