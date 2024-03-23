@@ -107,7 +107,8 @@ const requestPasswordReset = asyncHanlder(async (req, res) => {
     }
 
     res.status(200).json({
-      payload: null,
+        payload: null,
+        userId: user._id,
       status: Status.getSuccessStatus(i18n.__("SUCCESS")),
     });
   } catch (error) {
