@@ -6,11 +6,11 @@ exports.sendMail = async function (mailOptions) {
     logger.trace("[mailUtil] :: sendMail(): Start");
     try {
         const transporter = nodemailer.createTransport({
-            service: 'gmail', 
-            auth: {
-                user: 'sricuisine2024@gmail.com',
-                pass: 'SE-106-IIT',
-            },
+          service: "gmail",
+          auth: {
+            user: "sricuisine2024@gmail.com",
+            pass: "aynr tghc ysju gbxe",
+          },
         });
         let message = {
           from: "sricuisine2024@gmail.com",
