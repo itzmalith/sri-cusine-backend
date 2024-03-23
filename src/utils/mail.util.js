@@ -8,16 +8,16 @@ exports.sendMail = async function (mailOptions) {
         const transporter = nodemailer.createTransport({
             service: 'gmail', 
             auth: {
-                user: '',
-                pass: '',
+                user: 'sricuisine2024@gmail.com',
+                pass: 'SE-106-IIT',
             },
         });
         let message = {
-            from: '',
-            to: mailOptions.to,
-            subject: mailOptions.subject,
-            html: mailOptions.html,
-            attachments: mailOptions.attachments
+          from: "sricuisine2024@gmail.com",
+          to: mailOptions.to,
+          subject: mailOptions.subject,
+          html: mailOptions.html,
+          attachments: mailOptions.attachments,
         };
         const mailSent = await transporter.sendMail(message);
         logger.trace("[mailUtil] :: sendMail(): End");
